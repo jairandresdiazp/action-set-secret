@@ -1,6 +1,6 @@
 name: 'Set Action Secrets'
 
-author: JAir Diaz
+author: Jair Diaz
 
 description: 'Create or update secrets in github repository'
 
