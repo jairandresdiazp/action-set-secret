@@ -1,5 +1,4 @@
 {
-  "main": "index.js",
   "repository": "https://github.com/jairandresdiazp/action-set-secret",
   "license": "MIT License",
   "scripts": {
@@ -21,7 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run build"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
