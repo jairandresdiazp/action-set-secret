@@ -33,18 +33,18 @@ Response json payload
 ### For personal repo
 
 ```YAML
-uses: hmanzur/actions-set-secret@v2.0.0
+uses: jairandresdiazp/actions-set-secret@v1
 with:
   name: 'MY_SECRET_NAME'
   value: 'Lorem ipsun dolor simit'
-  repository: hmanzur/actions-set-secret
+  repository: jairandresdiazp/actions-set-secret
   token: ${{ secrets.REPO_ACCESS_TOKEN }}
 ```
 
 ### For organizations
 
 ```YAML
-uses: hmanzur/actions-set-secret@v2.0.0
+uses: jairandresdiazp/actions-set-secret@v1
 with:
   name: 'MY_SECRET_NAME'
   value: 'Lorem ipsun dolor simit'
