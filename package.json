@@ -1,6 +1,13 @@
 {
   "repository": "https://github.com/jairandresdiazp/action-set-secret",
-  "license": "MIT License",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src",
+    "action.yml"
+  ],
   "scripts": {
     "lint": "eslint .",
     "build": "ncc build index.js -o dist"
