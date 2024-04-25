@@ -102,4 +102,5 @@ typings/
 .idea
 .vscode
 *.lock
+*-lock.*
 *.log
