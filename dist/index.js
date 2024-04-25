@@ -24936,7 +24936,7 @@ exports["default"] = _default;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const { Octokit } = __nccwpck_require__(8570)
-//const sodium = require('tweetsodium')
+const Core = __nccwpck_require__(2186)
 const sodium = __nccwpck_require__(713)
 
 
@@ -24969,7 +24969,7 @@ module.exports = class Api {
   async getPublicKey() {
     let response
     if (this.isOrg()) {
-      response = await this.octokit.request('GET /:base/:org/actions/secrets/public-key', {
+      response = await this.octokit.rest.request('GET /:base/:org/actions/secrets/public-key', {
         base: this._base,
         org: this._org
       })
@@ -25025,7 +25025,9 @@ module.exports = class Api {
         data
       })
     }
-    return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
+    const URL = `URL: /${this._base}/${this._owner}/${this._repo}/actions/secrets/${name}`
+    Core.info(URL)
+    return this.octokit.request('PUT /:base/:owner/:repo/actions/secrets/:name', {
       base: this._base,
       owner: this._owner,
       repo: this._repo,
