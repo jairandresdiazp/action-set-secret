@@ -1,8 +1,8 @@
-<h1 align="center">Set Secret<br />
+<h1 align="center">Set action secret<br />
 <div align="center">
   
   [![Build](https://github.com/jairandresdiazp/action-set-secret/actions/workflows/test.yml/badge.svg)](https://github.com/jairandresdiazp/action-set-secret/)
-  [![Version](https://img.shields.io/github/v/tag/jairandresdiazp/action-set-secret?label=version&sort=semver&color=066da5)](https://github.com/marketplace/actions/set-secret)
+  [![Version](https://img.shields.io/github/v/tag/jairandresdiazp/action-set-secret?label=version&sort=semver&color=066da5)](https://github.com/marketplace/actions/set-action-secrets)
   [![Size](https://img.shields.io/github/size/jairandresdiazp/action-set-secret/dist/index.js?branch=main&color=066da5)](https://github.com/jairandresdiazp/action-set-secret/)
   
 </div></h1>
@@ -42,7 +42,7 @@ with:
   name: 'MY_SECRET_NAME'
   value: 'Lorem ipsun dolor simit'
   repository: jairandresdiazp/actions-set-secret
-  token: ${{ secrets.REPO_ACCESS_TOKEN }}
+  token: ${{ secrets.GIT_REPO_ACCESS_TOKEN }}
 ```
 
 ### For organizations
@@ -53,8 +53,8 @@ with:
   name: 'MY_SECRET_NAME'
   value: 'Lorem ipsun dolor simit'
   repository: 'my-org'
-  token: ${{ secrets.REPO_ACCESS_TOKEN }}
-  org: true
+  token: ${{ secrets.GIT_REPO_ACCESS_TOKEN }}
+  org: 'my-org'
   visibility: 'all'
 ```
 

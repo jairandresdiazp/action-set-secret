@@ -29,7 +29,6 @@ inputs:
 
   org:
     description: Repository organization
-    default: null
     required: false
 
   token:
