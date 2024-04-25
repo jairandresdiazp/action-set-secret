@@ -32,7 +32,7 @@ module.exports = class Api {
   async getPublicKey() {
     let response
     if (this.isOrg()) {
-      response = await this.octokit.request('GET /:base/:org/actions/secrets/public-key', {
+      response = await this.octokit.rest.request('GET /:base/:org/actions/secrets/public-key', {
         base: this._base,
         org: this._org
       })

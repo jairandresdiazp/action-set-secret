@@ -1,0 +1,16 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: Update secret
+        uses: jairandresdiazp/action-set-secret@v1
+        with:
+          name: 'MY_SECRET_NAME'
+          value: 'Lorem ipsun dolor simit'
+          token: ${{ secrets.GIT_REPO_ACCESS_TOKEN }}
