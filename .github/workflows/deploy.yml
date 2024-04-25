@@ -1,12 +1,16 @@
 name: Create Release
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version to test use semver format e.g. v1.0.0' 
+        required: true
+        default: 'v1'
 
 jobs:
   test:
-    name: Run tests
+    name: Init Repository
     if: github.repository_owner == 'jairandresdiazp'
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +40,6 @@ jobs:
         run: |
           git config --global user.email "${{ github.actor }}"
           git config --global user.name "${{ github.repository_owner }}"
-          git checkout -b release/${{ github.event.inputs.version }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -51,11 +54,11 @@ jobs:
       - run: |
           pnpm run build
 
-      - name: Git Create Branch release/${{ github.event.inputs.version }}
+      - name: Git add build
         run: |
           git add .
           git commit -m "Auto commit from Github Actions #${{ github.run_id }}"
-          git push origin release/${{ github.event.inputs.version }} -f
+          git push origin -f
 
   deploy:
     name: Deploy Bundle
@@ -75,8 +78,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_REPO_ACCESS_TOKEN }}
         with:
-          tag_name: v/${{ github.event.inputs.version }}
-          release_name: v${{ github.event.inputs.version }}
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: ${{ github.event.inputs.version }}
           commitish: release/${{ github.event.inputs.version }}
           body: |
             Created on ${{ env.TIME }} using automated Workflow by ${{ github.actor }}
