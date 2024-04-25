@@ -28,7 +28,8 @@ inputs:
     required: false
 
   org:
-    description: Indicate is an organization repo
+    description: Repository organization
+    default: null
     required: false
 
   token:

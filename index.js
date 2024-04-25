@@ -56,7 +56,7 @@ try {
   const token = Core.getInput('token')
   const org = Core.getInput('org')
 
-  const api = new Api(token, repository, owner, !!org)
+  const api = new Api(token, repository, owner, org)
 
   boostrap(api, name, value)
 

@@ -24950,10 +24950,10 @@ module.exports = class Api {
    * @param {any} auth - Auth method
    * @param {string} repo - Repository in format username/repo-name
    * @param {string} owner - Repository owner
-   * @param {boolean} org - Is a Organization
+   * @param {string} org - Repository is organization
    * @returns {Promise<{data: object}>} - Fetch response
    */
-  constructor(auth, repo, owner, org = false) {
+  constructor(auth, repo, owner, org ) {
     this.octokit = new Octokit({ auth })
     this._repo = repo
     this._org = org
@@ -24967,12 +24967,19 @@ module.exports = class Api {
    * @returns {Promise<{data: object}>} - Fetch response
    */
   async getPublicKey() {
-    let { data } = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
-      base: this._base,
-      repo: this._repo
-    })
-
-    return data
+    let response
+    if (this.isOrg()) {
+      response = await this.octokit.request('GET /:base/:org/actions/secrets/public-key', {
+        base: this._base,
+        org: this._org
+      })
+    } else {
+      response = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
+        base: this._base,
+        repo: atob(this._repo)
+      })
+    }
+    return response?.data
   }
 
   /**
@@ -25031,7 +25038,7 @@ module.exports = class Api {
    * @returns {boolean} - Is organization
    */
   isOrg() {
-    return this._org
+    return this._org ? true : false
   }
 }
 
@@ -28100,7 +28107,7 @@ try {
   const token = Core.getInput('token')
   const org = Core.getInput('org')
 
-  const api = new Api(token, repository, owner, !!org)
+  const api = new Api(token, repository, owner, org)
 
   boostrap(api, name, value)
 
