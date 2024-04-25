@@ -80,7 +80,7 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.version }}
           release_name: ${{ github.event.inputs.version }}
-          commitish: release/${{ github.event.inputs.version }}
+          commitish: main
           body: |
             Created on ${{ env.TIME }} using automated Workflow by ${{ github.actor }}
           draft: false
