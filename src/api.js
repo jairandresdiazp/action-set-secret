@@ -88,6 +88,7 @@ module.exports = class Api {
         data
       })
     }
+    console.log(`URL: /${this._base}/${this._owner}/${this._repo}/actions/secrets/:name`, name)
     return this.octokit.request('PUT /:base/:owner/:repo/actions/secrets/:name', {
       base: this._base,
       owner: this._owner,
