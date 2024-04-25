@@ -1,4 +1,11 @@
-# Set Secret Action
+<h1 align="center">Set Secret<br />
+<div align="center">
+  
+  [![Build](https://github.com/jairandresdiazp/action-set-secret/actions/workflows/test.yml/badge.svg)](https://github.com/jairandresdiazp/action-set-secret/)
+  [![Version](https://img.shields.io/github/v/tag/jairandresdiazp/action-set-secret?label=version&sort=semver&color=066da5)](https://github.com/marketplace/actions/set-secret)
+  [![Size](https://img.shields.io/github/size/jairandresdiazp/action-set-secret/dist/index.js?branch=main&color=066da5)](https://github.com/jairandresdiazp/action-set-secret/)
+  
+</div></h1>
 
 Create or edit actions secrets in repository or organizations
 
