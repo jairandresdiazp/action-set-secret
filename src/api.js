@@ -1,5 +1,7 @@
 const { Octokit } = require('@octokit/core')
-const sodium = require('tweetsodium')
+//const sodium = require('tweetsodium')
+const sodium = require('libsodium-wrappers')
+
 
 /**
  * @class Api
@@ -45,14 +47,16 @@ module.exports = class Api {
    * @returns {{key_id: string, encrypted_value: string}} - Secret data
    */
   async createSecret(key_id, key, value) {
+    /*
     const messageBytes = Buffer.from(value)
-
     const keyBytes = Buffer.from(key, 'base64')
-
     const encryptedBytes = sodium.seal(messageBytes, keyBytes)
-
+    */
+    let binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL)
+    let binsec = sodium.from_string(value)
+    let encBytes = sodium.crypto_box_seal(binsec, binkey)
     return {
-      encrypted_value: Buffer.from(encryptedBytes).toString('base64'),
+      encrypted_value: sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL),
       key_id
     }
   }
