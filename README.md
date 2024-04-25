@@ -27,13 +27,10 @@ Create or edit actions secrets in repository or organizations
 
 ### Outputs
 
-### status
-
-Response status code
-
-### data
-
-Response json payload
+| Name   | Description           |
+| ------ | --------------------- |
+| status | Response status code  |
+| data   | Response json payload |
 
 ## Examples
 
