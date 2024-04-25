@@ -25025,8 +25025,6 @@ module.exports = class Api {
         data
       })
     }
-    const URL = `URL: /${this._base}/${this._owner}/${this._repo}/actions/secrets/${name}`
-    Core.info(URL)
     return this.octokit.request('PUT /:base/:owner/:repo/actions/secrets/:name', {
       base: this._base,
       owner: this._owner,
@@ -28085,8 +28083,6 @@ const boostrap = async (api, secret_name, secret_value) => {
     const enviroment = Core.getInput('enviroment')
 
     const response = await api.setSecret(data, secret_name, enviroment )
-
-    console.error(response.status, response.data)
 
     if (response.status >= 400) {
       Core.setFailed(response.data)

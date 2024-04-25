@@ -88,8 +88,6 @@ module.exports = class Api {
         data
       })
     }
-    const URL = `URL: /${this._base}/${this._owner}/${this._repo}/actions/secrets/${name}`
-    Core.info(URL)
     return this.octokit.request('PUT /:base/:owner/:repo/actions/secrets/:name', {
       base: this._base,
       owner: this._owner,

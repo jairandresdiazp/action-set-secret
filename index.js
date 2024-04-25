@@ -31,8 +31,6 @@ const boostrap = async (api, secret_name, secret_value) => {
 
     const response = await api.setSecret(data, secret_name, enviroment )
 
-    console.error(response.status, response.data)
-
     if (response.status >= 400) {
       Core.setFailed(response.data)
     } else {
