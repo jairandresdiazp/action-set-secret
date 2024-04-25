@@ -24976,7 +24976,7 @@ module.exports = class Api {
     } else {
       response = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
         base: this._base,
-        repo: atob(this._repo)
+        repo: decodeURI(this._repo)
       })
     }
     return response?.data
@@ -25015,10 +25015,9 @@ module.exports = class Api {
    */
   async setSecret(data, name, enviroment) {
     if (enviroment) {
-      return this.octokit.request('PUT /:base/:owner/:repo/environments/:enviroment/secrets/:name', {
+      return this.octokit.request('PUT /:base/:repo/environments/:enviroment/secrets/:name', {
         base: this._base,
-        owner: this._owner,
-        repo: this._repo,
+        repo: decodeURI(this._repo),
         enviroment,
         name,
         data
@@ -25026,7 +25025,7 @@ module.exports = class Api {
     }
     return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
       base: this._base,
-      repo: this._repo,
+      repo: decodeURI(this._repo),
       name,
       data
     })
