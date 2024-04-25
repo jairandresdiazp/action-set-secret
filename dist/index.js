@@ -24948,7 +24948,7 @@ module.exports = class Api {
    * Generate public key to store secrets
    *
    * @param {any} auth - Auth method
-   * @param {string} repo - Repository in format username/repo-name
+   * @param {string} repo - Repository name
    * @param {string} owner - Repository owner
    * @param {string} org - Repository is organization
    * @returns {Promise<{data: object}>} - Fetch response
@@ -24974,9 +24974,10 @@ module.exports = class Api {
         org: this._org
       })
     } else {
-      response = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
+      response = await this.octokit.request('GET /:base/:owner/:repo/actions/secrets/public-key', {
         base: this._base,
-        repo: decodeURIComponent(this._repo)
+        owner: this._owner,
+        repo: this._repo
       })
     }
     return response?.data
@@ -25018,7 +25019,7 @@ module.exports = class Api {
       return this.octokit.request('PUT /:base/:owner/:repo/environments/:enviroment/secrets/:name', {
         base: this._base,
         owner: this._owner,
-        repo: decodeURIComponent(this._repo),
+        repo:this._repo,
         enviroment,
         name,
         data
@@ -25026,7 +25027,8 @@ module.exports = class Api {
     }
     return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
       base: this._base,
-      repo: decodeURIComponent(this._repo),
+      owner: this._owner,
+      repo: this._repo,
       name,
       data
     })
@@ -28102,7 +28104,7 @@ try {
   // `who-to-greet` input defined in action metadata file
   const name = Core.getInput('name')
   const value = Core.getInput('value')
-  const repository = Core.getInput('repository')
+  const repository = Core.getInput('repository').split('/')[1]
   const owner = Core.getInput('owner')
   const token = Core.getInput('token')
   const org = Core.getInput('org')

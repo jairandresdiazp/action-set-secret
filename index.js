@@ -51,7 +51,7 @@ try {
   // `who-to-greet` input defined in action metadata file
   const name = Core.getInput('name')
   const value = Core.getInput('value')
-  const repository = Core.getInput('repository')
+  const repository = Core.getInput('repository').split('/')[1]
   const owner = Core.getInput('owner')
   const token = Core.getInput('token')
   const org = Core.getInput('org')
